@@ -1,0 +1,365 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Prothom Alo :: Circulation</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script src="Scripts/JScript.js" type="text/javascript"></script>    
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/ddaccordion.js"></script>
+    <script src="Scripts/Min.js" type="text/javascript"></script>     
+    <script type="text/javascript" src="Scripts/dragDiv.js"></script>
+    
+
+     <script type="text/javascript">
+
+         ddaccordion.init({ //top level headers initialization
+             headerclass: "expandable", //Shared CSS class name of headers group that are expandable
+             contentclass: "categoryitems", //Shared CSS class name of contents group
+             revealtype: "mouseover", //Reveal content when user clicks or onmouseover the header? Valid value: "click", "clickgo", or "mouseover"
+             mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+             collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
+             defaultexpanded: [0], //index of content(s) open by default [index1, index2, etc]. [] denotes no content
+             onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+             animatedefault: false, //Should contents open by default be animated into view?
+             persiststate: true, //persist state of opened contents within browser session?
+             toggleclass: ["", "openheader"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+             togglehtml: ["prefix", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+             animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+             oninit: function (headers, expandedindices) { //custom code to run when headers have initalized
+                 //do nothing
+             },
+             onopenclose: function (header, index, state, isuseractivated) { //custom code to run whenever a header is opened or closed
+                 //do nothing
+             }
+         })
+
+         ddaccordion.init({ //2nd level headers initialization
+             headerclass: "subexpandable", //Shared CSS class name of sub headers group that are expandable
+             contentclass: "subcategoryitems", //Shared CSS class name of sub contents group
+             revealtype: "mouseover", //Reveal content when user clicks or onmouseover the header? Valid value: "click" or "mouseover
+             mouseoverdelay: 200, //if revealtype="mouseover", set delay in milliseconds before header expands onMouseover
+             collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
+             defaultexpanded: [], //index of content(s) open by default [index1, index2, etc]. [] denotes no content
+             onemustopen: false, //Specify whether at least one header should be open always (so never all headers closed)
+             animatedefault: false, //Should contents open by default be animated into view?
+             persiststate: true, //persist state of opened contents within browser session?
+             toggleclass: ["opensubheader", "closedsubheader"], //Two CSS classes to be applied to the header when it's collapsed and expanded, respectively ["class1", "class2"]
+             togglehtml: ["none", "", ""], //Additional HTML added to the header when it's collapsed and expanded, respectively  ["position", "html1", "html2"] (see docs)
+             animatespeed: "fast", //speed of animation: integer in milliseconds (ie: 200), or keywords "fast", "normal", or "slow"
+             oninit: function (headers, expandedindices) { //custom code to run when headers have initalized
+                 //do nothing
+             },
+             onopenclose: function (header, index, state, isuseractivated) { //custom code to run whenever a header is opened or closed
+                 //do nothing
+             }
+         });
+
+        
+</script>
+
+<style type="text/css">
+    
+    #bgimage
+    {
+      margin:0;
+      padding:0;
+      width:1340px;
+      height:650px; 
+      filter:alpha(opacity=10); 
+      opacity:0.1;
+      z-index: -1;     
+      
+    }
+    
+    .arrowlistmenu
+    {
+    width: 100%; /*width of accordion menu*/
+    margin:0px 0px 0px 0px;
+    
+
+    }
+    .arrowlistmenu .menuheader
+    { /*CSS class for menu headers in general (expanding or not!)*/
+    font: bold 12px Arial;
+    font-family: Helvetica, Arial, "Sans Serif";
+    color: #1C2529;
+    background: black url(Images/titlebar.png) repeat-x center left;
+    margin-bottom: 0px; /*bottom spacing between header and rest of content*/
+    text-transform: capitalize;
+    padding: 4px 0 4px 10px; /*header text is indented 10px*/
+    cursor: hand;
+    cursor: pointer;
+        
+    }
+    .arrowlistmenu .openheader
+    { /*CSS class to apply to expandable header when it's expanded*/
+    background-image: url(Images/titlebar-active.png);
+
+    }
+
+    .arrowlistmenu ul
+    { /*CSS for UL of each sub menu*/
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 0px; /*bottom spacing between each UL and rest of content*/
+    }
+
+    .arrowlistmenu ul li
+    {
+    padding-bottom: 2px; /*bottom spacing between menu items*/
+    }
+
+    .arrowlistmenu ul li .opensubheader
+    { /*Open state CSS for sub menu header*/
+    background: lightblue !important;
+    }
+
+    .arrowlistmenu ul li .closedsubheader
+    { /*Closed state CSS for sub menu header*/
+    background: lightgreen !important;
+    }
+
+    .arrowlistmenu ul li a
+    {
+    /*color: #A70303;*/
+    color:#2F5A45;
+    background: url(Images/arrowbullet.png) no-repeat center left; /*custom bullet list image*/
+    display: block;
+    padding: 2px 0;
+    padding-left: 19px; /*link text is indented 19px*/
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px solid #dadada;
+    font-size: 12px;
+    }
+
+    .arrowlistmenu ul li a:visited
+    {
+    color: #2F5A45;
+    }
+
+    .arrowlistmenu ul li a:hover
+    { /*hover state CSS*/
+    background-color: #929B98;
+    }
+
+    .arrowlistmenu ul li a.subexpandable:hover
+    { /*hover state CSS for sub menu header*/
+    background: lightblue;
+    }
+     
+    
+    .box 
+ {
+  /*background-color: #ffff00;*/
+  border: 1px solid #000000;
+  color: #000000;
+  padding: 0px;
+  position: absolute;
+ }
+
+.bar 
+{
+  background-color: #008080;
+  color: #ffffff;
+  cursor: move;
+  font-weight: bold;
+  padding: 2px 1em 2px 1em;
+}
+
+.content 
+{
+  padding-bottom: 1em;
+}
+#header
+{  
+   position:absolute;     
+   width:1100px;
+   margin-left:0px;
+   height:60px;
+   border:0px solid red;
+   text-align:center;
+   font-size:20px;
+   background-image:url('Images/headerbg.png');
+   
+   
+}
+#footer 
+{
+   position:absolute;   
+   width:1100px;
+   height:30px;   
+   background-image:url('Images/footer.png');
+   border:0px solid #000000;
+   font:13px/22px "Trebuchet MS",Arial, Helvetica, sans-serif; 
+   clear:both;
+   margin-top:620px;
+   -moz-border-radius-bottomleft: 15px;
+   -moz-border-radius-bottomright: 15px;
+   -webkit-border-bottom-left-radius: 15px;
+   -webkit-border-bottom-right-radius: 15px;         
+    behavior: url(PIE.htc);
+  
+}
+#left_column
+{
+    position:absolute;
+    height:auto;
+    width:180px;
+    border:0px solid #000000;    
+    float:left;
+    margin:70px 0px 0px 0px;
+    padding-top:0px;
+    /*background-image:url('Images/leftclmnbg.png');*/
+       
+}
+    
+</style>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+
+   <div id="bgimage" ></div>
+    <div id="container" style="box-shadow:0px 0px 2px 2px silver">
+
+            <div id="header">
+            
+                <asp:HyperLink ID="lnkLogout" class="clsTemStyle" Font-Bold="True" runat="server" style="position:absolute; text-decoration:underline; font-family: Verdana;  font-size:12px; color:White; top: 5px; left:1030px;" 
+                            NavigateUrl="~/Logout.aspx">Logout</asp:HyperLink>
+                <asp:LinkButton ID="hlChangePass" runat="server" Text="Change Your Password" Font-Bold="True"
+                            style="position:absolute; top:5px; left:850px; font-size:12px; font-family: Verdana; color:White;"
+                            OnClientClick="window.open('ChangePassword.aspx','mywindow','Height=220px; Width=345px; top=250px; left=460px; statusber=no; menubar=no; addressbar=no; toolbar=no; scrollbars=no; border=no; titlebar=no'); return false;"></asp:LinkButton>
+                
+                <asp:Label ID="lblWellCome" runat="server" Text="WelCome ," CssClass="labelTextField" style="position:absolute; top:30px; left:850px; font-size:12px; font-family: Verdana;" ></asp:Label>
+                <asp:Label ID="lblWellCome1" runat="server" Text="WelCome" CssClass="labelTextField" style="position:absolute; top:31px; left:930px; color:Navy; font-style:italic; font-size:11px; font-family: Verdana;" ></asp:Label>
+
+            </div>
+
+            <div id="left_column" onmousedown="dragStart(event)" class="box content">
+                <div class="arrowlistmenu">
+                
+                        <h3 class="menuheader expandable">User Management</h3>
+                        <ul class="categoryitems">
+                        <li><a id="CreateUser" visible="false" runat="server" href="user.aspx">User</a></li>                        
+                        <li><a id="userGroup" runat="server" visible="false" href="userGroup.aspx">User Group</a></li>
+                        <li><a id="groupAuthorization" visible="false" runat="server" href="groupAuthorization.aspx" >Group Authorization</a></li>              
+                        <li><a href="#">User Authorization</a></li>
+                        <%--<li><a href="#">Form CSS</a></li>
+                        <li><a href="#">DIVs and containers</a></li>
+                        <li><a href="#">Links & Buttons</a></li>
+                        <li><a href="#">Other</a></li>
+                        <li><a href="#">Browse All</a></li>--%>                        
+                        </ul>
+
+                        <h3 class="menuheader expandable">Master Setup</h3>
+                        <ul class="categoryitems">
+                            <li><a id="hawkerInfo" visible="false" runat="server" href="hawkerInfo.aspx">Agent Information</a></li>
+                            <li><a id="authority" visible="false" runat="server" href="Authority.aspx">Employee Hierarchy</a></li> 
+                            <li><a id="Distribution" visible="false" runat="server" href="Distribution.aspx">Sales Area</a></li>
+                            <li><a id="weeklyRateSetup" visible="false" runat="server" href="weeklyRateSetup.aspx">Weekly Rate Setup</a></li>
+                            <li><a id="reasonOfUnsold" visible="false" runat="server" href="reasonOfUnsold.aspx">Reason Of Unsold</a></li>
+                            <li><a id="CTPSetup" visible="false" runat="server" href="CTPSetup.aspx">CTP Setup</a></li>
+                            <li><a id="PageSetup" visible="false" runat="server" href="PageSetup.aspx">Page Setup</a></li>
+                            <li><a id="CategorySetup" visible="false" runat="server" href="CategorySetup.aspx">Category Setup</a></li>
+                            
+
+                       
+                        </ul>
+
+                        <h3 class="menuheader expandable">Geography</h3>
+                        <ul class="categoryitems">
+                        <li><a id="region" visible="false" runat="server" href="region.aspx">Region</a></li>  
+                        <li><a id="population" visible="false" runat="server" href="PopulationInformation.aspx">Population</a></li>
+                        <%--<li><a id="importData" visible="false" runat="server" href="importData.aspx">Import Data</a></li>--%>
+                        </ul>
+
+
+                        <h3 class="menuheader expandable">Transport Management</h3>
+                        <ul class="categoryitems">
+                        <li><a id="route" visible="false" runat="server" href="route.aspx">Route</a></li> 
+                        <li><a id="subRoute" visible="false" runat="server" href="subRoute.aspx">Sub Route</a></li>
+                        <li><a id="vehicle" visible="false" runat="server" href="vehicle.aspx">Vehicle</a></li>
+                        <li><a id="TransportSchedule" visible="false" runat="server" href="TransportManagement.aspx">Transport Maintenance</a></li>
+                        </ul>
+
+
+                        <h3 class="menuheader expandable">Target Management</h3>
+                        <ul class="categoryitems">
+                            <li><a id="yearly" visible="false" runat="server" href="yearly.aspx">Yearly</a></li> 
+                            <li><a id="monthly" visible="false" runat="server" href="monthly.aspx">Monthly</a></li> 
+                            <li><a id="Quarterly" visible="false" runat="server" href="Quarterly.aspx">Quarterly</a></li> 
+
+                        </ul>
+
+                        <h3 class="menuheader expandable">Order Management</h3>
+                        <ul class="categoryitems">
+                        <li><a id="OrderCapture" visible="false" runat="server" href="OrderCapture.aspx">Order Entry</a></li>  
+                        <li><a id="copyOrder" visible="false" runat="server" href="copyOrder.aspx">Copy Order</a></li>    
+                        <li><a id="Quantity_Inc_Dec" visible="false" runat="server" href="Quantity_Inc_Dec.aspx">Modify Order</a></li>
+                        <li><a id="ReturnEntry" visible="false" runat="server" href="ReturnEntry.aspx">Return Entry</a></li>   
+                        <li><a id="RegularModify" visible="false" runat="server" href="RegularModify.aspx">Regular Modify</a></li>   
+                        <li><a id="ChalanModify" visible="false" runat="server" href="ChalanModify.aspx">Chalan Modify</a></li>
+                        <li><a id="OrderSynchronize" visible="false" runat="server" href="OrderSynchronization.aspx">Order Synchronize</a></li>                                       
+                        </ul>
+                       
+
+                       <h3 class="menuheader expandable">Competitor Information</h3>
+                        <ul class="categoryitems">
+                        <li><a id="CompititorData" visible="false" runat="server" href="PaperComparison.aspx">Competitor Name</a></li> 
+                        <li><a id="PaperTransaction" visible="false" runat="server" href="PaperTransaction.aspx">Competitor Sales</a></li>                                           
+                        </ul>
+
+
+                       <h3 class="menuheader expandable">Other Activities</h3>
+                        <ul class="categoryitems">
+                        <li><a id="AgentDeed" visible="false" runat="server" href="ContractDeed.aspx">Agent Deed</a></li>
+                         <li><a id="AgentSalesQuantity" visible="false" runat="server" href="AgentSalesQuantity.aspx">Agent Sales Quantity</a></li>
+                         <li><a id="CTPSchedule" visible="false" runat="server" href="CTPSchedule.aspx">CTP Management</a></li>                                              
+                        </ul>
+
+
+                       <h3 class="menuheader expandable">Reports</h3>
+                        <ul class="categoryitems">
+                        <li><a id="rtpLabel" visible="false" runat="server" href="rtpLabel.aspx">Print Label</a></li>
+                        <li><a id="UnsoldReport" visible="false" runat="server" href="UnsoldReport.aspx">Unsold Report</a></li>
+                         <li><a id="DashBoard" visible="false" runat="server" href="Summaryreport.aspx">Dash Board</a></li>
+                         <li><a id="CompetitorSale" visible="false" runat="server" href="rptCompetitorSale.aspx">Competitor Sales</a></li>
+                         <li><a id="TransportTime" visible="false" runat="server" href="rptTransportSchedule.aspx">Transport Time</a></li>
+                         <li><a id="ChalanBangla" visible="true" runat="server" href="ChalanBangla.aspx">Chalan</a></li>
+                        </ul>
+
+
+
+                 </div>
+            </div>
+
+            <div id="bodymiddle">
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">        
+                </asp:ContentPlaceHolder>
+            </div>          
+
+
+              <%-- <div id="right_column" onmousedown="dragStart(event)" class="box content" >
+                       <asp:Label ID="lblMarqueNotice" runat="server" CssClass="notice" ></asp:Label> 
+               </div>--%>
+            
+            
+
+          
+            <div id="footer">
+                <p style="position:absolute; left:450px; top:-7px;">©Transcom ERP. all right reserved 2013.</p>
+
+            </div>          
+        </div>
+  
+ 
+    </form>
+</body>
+</html>

@@ -1,0 +1,11 @@
+FrmBengolyCirChallan = 136, 39, 841, 651, , 66, 66, 624, 510, C
+ComMod = 154, 154, 1085, 608, 
+FrmRptViewer = 44, 44, 550, 423, , 110, 110, 621, 554, C
+FrmError = 0, 0, 0, 0, C, 132, 132, 643, 576, C
+FrmCustomerTypeFinder = 44, 44, 749, 656, C, 154, 154, 665, 598, C
+FrmAbout = 0, 0, 0, 0, C, 176, 176, 687, 620, C
+FrmCustomerFinder = 154, 154, 859, 766, , 132, 132, 837, 744, C
+FrmAreaFinder = 198, 198, 918, 810, , 176, 176, 896, 788, C
+FrmTransportFinder = 242, 242, 962, 854, , 220, 220, 940, 832, C
+xCrystalReportChallanInBangla = 0, 0, 636, 428, , -286, 2, 878, 655, C
+CrystalReportChallanInBangla = 110, 110, 982, 473, Z, 198, 198, 1291, 851, C

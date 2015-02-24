@@ -1,0 +1,2 @@
+Del *.tmp		
+echo dome
